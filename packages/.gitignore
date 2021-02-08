@@ -1,0 +1,7 @@
+*.wasm
+*.js
+*.d.ts
+*.ts
+!base/**/*.ts
+!node/src/index.ts
+LICENSE*

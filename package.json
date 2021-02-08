@@ -1,0 +1,56 @@
+{
+  "name": "ttf-parser-wasm",
+  "version": "0.1.1",
+  "description": "WASM wrapper of ttf-parser (Rust crate)",
+  "private": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build:wasm": "cargo build --release --target wasm32-unknown-unknown --manifest-path ./ttf-parser/c-api/Cargo.toml",
+    "build:node": "tsc --project ./packages/node/tsconfig.json",
+    "build": "run-p build:*",
+    "copy-wasm:node": "cpx ./ttf-parser/c-api/target/wasm32-unknown-unknown/release/*.wasm ./packages/node",
+    "copy-wasm": "run-p copy-wasm:*",
+    "copy-ts:node": "cpx ./packages/base/lib/* ./packages/node/src/lib",
+    "copy-ts": "run-p copy-ts:*",
+    "copy-license:node": "cpx ./LICENSE* ./packages/node",
+    "copy-license": "run-p copy-license:*",
+    "clean:node": "rimraf ./packages/node/*.wasm ./packages/node/src/lib ./packages/node/dist ./packages/node/LICENSE*",
+    "clean": "run-p clean:*",
+    "setup": "run-s clean copy-license copy-ts build copy-wasm",
+    "prerelease": "npm run setup",
+    "release:node": "npm publish ./packages/node/ --access public",
+    "release": "run-p release:*",
+    "lint:base": "eslint ./packages/base/**/*.ts",
+    "lint:node": "eslint ./packages/node/src/index.ts",
+    "lint": "run-p lint:*",
+    "lint-fix:base": "eslint ./packages/base/**/*.ts --fix",
+    "lint-fix:node": "eslint ./packages/node/src/index.ts --fix",
+    "lint-fix": "run-p lint-fix:*"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ssssota/ttf-parser-wasm.git"
+  },
+  "keywords": [
+    "ttf-parser",
+    "wasm"
+  ],
+  "author": "\"Sotaro Tommykawa \" <tommysouta@gmail.com>",
+  "license": "(MIT OR Apache-2.0)",
+  "bugs": {
+    "url": "https://github.com/ssssota/ttf-parser-wasm/issues"
+  },
+  "homepage": "https://github.com/ssssota/ttf-parser-wasm#readme",
+  "devDependencies": {
+    "@types/node": "^14.14.22",
+    "@typescript-eslint/eslint-plugin": "^4.14.2",
+    "@typescript-eslint/parser": "^4.14.2",
+    "cpx": "^1.5.0",
+    "eslint": "^7.19.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.22.1",
+    "npm-run-all": "^4.1.5",
+    "rimraf": "^3.0.2",
+    "typescript": "^4.1.3"
+  }
+}
