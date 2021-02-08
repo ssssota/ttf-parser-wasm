@@ -1,0 +1,28 @@
+{
+  "name": "ttf-parser-node",
+  "version": "0.1.1",
+  "description": "WASM wrapper of ttf-parser for Node.js",
+  "main": "dist/index.js",
+  "scripts": {
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ssssota/ttf-parser-wasm.git"
+  },
+  "keywords": [
+    "wasm",
+    "ttf",
+    "otf"
+  ],
+  "files": [
+    "dist/**/*",
+    "ttfparser.wasm",
+    "LICENSE*"
+  ],
+  "author": "\"Sotaro Tommykawa \" <tommysouta@gmail.com>",
+  "license": "(MIT OR Apache-2.0)",
+  "bugs": {
+    "url": "https://github.com/ssssota/ttf-parser-wasm/issues"
+  },
+  "homepage": "https://github.com/ssssota/ttf-parser-wasm#readme"
+}
